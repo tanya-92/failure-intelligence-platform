@@ -8,7 +8,7 @@ const apiKeySchema = new mongoose.Schema(
         },
         website: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "website",
+            ref: "Website",
             required: true,
         },
         isActive: {

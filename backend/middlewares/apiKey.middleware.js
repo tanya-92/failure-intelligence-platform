@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const ApiKey = require("../models/apiKey.model");
+const Website = require("../models/website.model");
 
 module.exports.apiKeyMiddleware = async(req, res, next) => {
     const apiKey = req.headers["x-api-key"];

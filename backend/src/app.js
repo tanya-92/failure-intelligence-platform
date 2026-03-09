@@ -5,6 +5,7 @@ const authRoutes = require("../routes/auth.routes");
 const { authMiddleware } = require("../middlewares/auth.middleware");
 const { roleMiddleware } = require("../middlewares/role.middleware");
 const websiteRoutes = require("../routes/website.routes");
+const failureRoutes = require("../routes/failure.routes");
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(express.json());       //parses incoming JSON request bodies
 app.use(securityMiddleware);
 app.use("/api/auth",authRoutes);
 app.use("/api/websites", websiteRoutes);
+app.use("/api",failureRoutes);
 
 // health check
 app.get("/health",(req,res)=>{
