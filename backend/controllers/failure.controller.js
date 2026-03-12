@@ -1,4 +1,4 @@
-const { createFailure } = require("../services/failure.service");
+const { createFailure, getFailuresByWebsite } = require("../services/failure.service");
 
 exports.createFailure = async (req, res, next) => {
     try {
@@ -9,6 +9,19 @@ exports.createFailure = async (req, res, next) => {
             failure
         });
     } catch(err){
+        next(err);
+    }
+};
+
+exports.getFailures = async (req, res, next) => {
+    try {
+        const failures = await getFailuresByWebsite(req.website._id);
+
+        res.json({
+            count: failures.length,
+            failures
+        });
+    } catch(err) {
         next(err);
     }
 };

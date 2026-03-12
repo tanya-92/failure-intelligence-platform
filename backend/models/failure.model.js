@@ -5,7 +5,8 @@ const failureSchema = new mongoose.Schema(
         website: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Website",
-            required: true
+            required: true,
+            index: true
         },
 
         message: {
@@ -19,14 +20,23 @@ const failureSchema = new mongoose.Schema(
         },
 
         service: {
-            type: String
+            type: String,
+            index: true
         },
 
         metadata: {
             type: Object
+        },
+
+        source: {
+            type: String,
+            default: "external"
         }
     },
     { timestamps: true }
 );
+
+failureSchema.index({ createdAt: -1 });
+failureSchema.index({ website: 1, createdAt: -1 });
 
 module.exports = mongoose.model("Failure", failureSchema);

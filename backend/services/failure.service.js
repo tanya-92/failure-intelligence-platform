@@ -9,7 +9,13 @@ const createFailure = async (payload, websiteId) => {
     return failure;
 }
 
-module.exports = { createFailure };
+const getFailuresByWebsite = async (websiteId, limit = 50) => {
+    return await Failure.find({ website: websiteId })
+    .sort({ createdAt: -1 })
+    .limit(limit);
+};
+
+module.exports = { createFailure, getFailuresByWebsite };
 
 
 // payload: contains error data sent by the client
