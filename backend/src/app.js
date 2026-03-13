@@ -6,9 +6,10 @@ const { authMiddleware } = require("../middlewares/auth.middleware");
 const { roleMiddleware } = require("../middlewares/role.middleware");
 const websiteRoutes = require("../routes/website.routes");
 const failureRoutes = require("../routes/failure.routes");
-
+const cors = require("cors");
 const app = express();
 
+app.use(cors());
 app.use(express.json());       //parses incoming JSON request bodies
 app.use(securityMiddleware);
 app.use("/api/auth",authRoutes);
