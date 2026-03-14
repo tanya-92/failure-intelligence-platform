@@ -15,7 +15,7 @@ exports.createFailure = async (req, res, next) => {
 
 exports.getFailures = async (req, res, next) => {
     try {
-        const failures = await getFailuresByWebsite(req.website._id);
+        const failures = await getFailuresByWebsite(req.query.websiteId);
 
         res.json({
             count: failures.length,

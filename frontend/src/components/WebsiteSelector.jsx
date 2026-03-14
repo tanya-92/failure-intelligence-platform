@@ -3,7 +3,7 @@ function WebsiteSelector({ websites, onSelect }){
         <div>
             <h3>Select Website</h3>
 
-            <select onChange={(e) => onSelect(websites[e.target.value])}>
+            <select onChange={(e) => onSelect(websites[e.target.selectedIndex - 1])}>
                 <option>Select</option>
                 {websites.map((website,i) => (
                     <option key = {website._id} value={i}>{website.name}</option>

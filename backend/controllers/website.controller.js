@@ -1,4 +1,5 @@
 const { createWebsite, generateApiKey } = require("../services/website.service");
+const Website = require("../models/website.model");
 
 exports.createWebsite = async (req, res, next) => {
     try {
@@ -22,4 +23,17 @@ exports.createApiKey = async(req, res, next) => {
     } catch(err){
         next(err);
     }
+};
+
+exports.getWebsites = async (req, res, next) => {
+  try {
+    const websites = await Website.find({ owner: req.user.id });
+
+    res.json({
+      websites
+    });
+
+  } catch (err) {
+    next(err);
+  }
 };

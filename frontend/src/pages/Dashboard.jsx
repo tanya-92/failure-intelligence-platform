@@ -15,7 +15,8 @@ function Dashboard() {
 
   const loadWebsites = async () => {
     const res = await api.get("/websites");
-    setWebsites(res.data);
+    setWebsites(res.data.websites);
+    console.log(websites);
   };
 
   const loadFailures = async (websiteId) => {
