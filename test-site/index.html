@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Salon Test</title>
+</head>
+
+<body>
+
+<h1>Salon Test Site</h1>
+
+<button onclick="testError()">Trigger Error</button>
+<button onclick="testPromiseError()">Trigger Promise Error</button>
+
+<script src="http://localhost:4000/fip-sdk.js"></script>
+
+<script>
+
+FIP.init({
+  apiKey: "5702127b2bb9562e869a809213095908b5cdbd474d6256ea410ae226ff78721d",
+  service: "frontend"
+})
+
+function testError(){
+  undefinedFunction()
+}
+
+function testPromiseError(){
+  Promise.reject(new Error("Test Promise Error"))
+}
+
+</script>
+
+</body>
+</html>

@@ -7,8 +7,11 @@ const { roleMiddleware } = require("../middlewares/role.middleware");
 const websiteRoutes = require("../routes/website.routes");
 const failureRoutes = require("../routes/failure.routes");
 const cors = require("cors");
+const path = require("path");
 const app = express();
 
+// Serve the FIP SDK
+app.use("/fip-sdk.js", express.static(path.join(__dirname, "../public/fip-sdk.js")));
 app.use(cors());
 app.use(express.json());       //parses incoming JSON request bodies
 app.use(securityMiddleware);

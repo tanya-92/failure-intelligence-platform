@@ -3,7 +3,8 @@ const { createFailure, getFailuresByWebsite } = require("../services/failure.ser
 exports.createFailure = async (req, res, next) => {
     try {
         const failure = await createFailure(req.body, req.website._id);
-
+        console.log("Failure received:", req.body);
+        console.log("Website:", req.website);
         res.status(201).json({ 
             message: "Failure Recorded",
             failure
@@ -16,7 +17,6 @@ exports.createFailure = async (req, res, next) => {
 exports.getFailures = async (req, res, next) => {
     try {
         const failures = await getFailuresByWebsite(req.query.websiteId);
-
         res.json({
             count: failures.length,
             failures
