@@ -8,10 +8,10 @@ const apiKeySchema = new mongoose.Schema(
         },
         website: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Website",
+            ref: "Website",   //api key belongs to a website
             required: true,
         },
-        isActive: {
+        isActive: {    //used to disable compromised keys; isActive = false => SDK requests will be rejected.
             type: Boolean,
             default: true,
         },

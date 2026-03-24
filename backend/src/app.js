@@ -6,6 +6,7 @@ const { authMiddleware } = require("../middlewares/auth.middleware");
 const { roleMiddleware } = require("../middlewares/role.middleware");
 const websiteRoutes = require("../routes/website.routes");
 const failureRoutes = require("../routes/failure.routes");
+const intelligenceRoutes = require("../routes/intelligence.routes");
 const cors = require("cors");
 const path = require("path");
 const app = express();
@@ -18,6 +19,7 @@ app.use(securityMiddleware);
 app.use("/api/auth",authRoutes);
 app.use("/api/websites", websiteRoutes);
 app.use("/api",failureRoutes);
+app.use("/api/intelligence", intelligenceRoutes);
 
 // health check
 app.get("/health",(req,res)=>{
