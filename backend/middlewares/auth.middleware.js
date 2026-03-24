@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 module.exports.authMiddleware = (req, res, next) => {
-    const authHeader = req.headers.authorization;
+    const authHeader = req.headers.authorization;    //extracts Authorization header from the incoming HTTP request
 
     if(!authHeader || !authHeader.startsWith("Bearer ")){
         return res.status(401).json({ message: "Unauthorized" });
@@ -11,7 +11,7 @@ module.exports.authMiddleware = (req, res, next) => {
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = decoded;
+        req.user = decoded;     //every next route can access req.user
         next();
     } catch {
         return res.status(401).json({message: "Invalid token"});

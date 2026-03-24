@@ -1,3 +1,5 @@
+//Centralized error handling; Instead of crashing server, all errors go here.
+
 module.exports.errorHandler = (err, req, res, next) => {
     console.log(err);
 

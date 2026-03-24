@@ -1,0 +1,54 @@
+1️⃣ Cross-Site Scripting (XSS) : Cross-Site Scripting (XSS) is an attack where a hacker injects malicious JavaScript code into a website so it runs in other users’ browsers.
+Possible damage:
+- Steal user cookies
+- Hijack user sessions
+- Redirect users to malicious sites
+- Perform actions as the logged-in user
+
+How Helmet helps: Helmet sets headers like:
+- Content-Security-Policy
+- X-XSS-Protection
+These restrict which scripts can run in the browser.
+
+
+2️⃣ Clickjacking: Clickjacking tricks users into clicking something different from what they think. Attackers embed your site inside an invisible iframe.
+
+Example:
+A fake page: Click here to win a prize
+But actually the user is clicking:Transfer money, Delete account, Change password
+Because the real website is hidden inside an iframe.
+
+How Helmet helps: Helmet sets this header:
+- X-Frame-Options: DENY
+This prevents your site from being embedded inside other websites.
+
+
+3️⃣ MIME Sniffing: Browsers sometimes try to guess file types instead of trusting the server. This is called MIME sniffing.
+
+Example:
+Server sends a file as: Content-Type: text/plain
+But the browser guesses: This looks like JavaScript and executes it.
+
+Attackers can exploit this to run malicious code.
+
+How Helmet helps: Helmet adds this header:
+- X-Content-Type-Options: nosniff
+This tells browsers: Do NOT guess file types. Use only the declared Content-Type.
+
+
+4️⃣ Content Security Attacks: These include loading malicious resources like: scripts, images, iframes, styles from untrusted domains.
+
+Example:
+A compromised script: <script src="http://malicious-site.com/steal-data.js"></script>
+
+If allowed, it can:
+- steal cookies
+- record user input
+- send data to attacker servers
+
+How Helmet helps: Helmet adds:
+- Content-Security-Policy (CSP)
+
+Example CSP rule: Content-Security-Policy: script-src 'self'
+
+Meaning: Only scripts from this website can run. External malicious scripts are blocked.
